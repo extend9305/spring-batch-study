@@ -1,0 +1,35 @@
+# H2 DataBase용
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+  batch:
+    # 최초 배치 테이블 생성 위해
+#    jdbc:
+#      initialize-schema: ALWAYS
+    job:
+#      enabled: true
+      name: STOP_STEP_TASK
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/mydb
+    username: root
+    password: test1357
+#    hikari:
+#      maximum-pool-size: 10
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password: password
+logging:
+  level:
+    org.hibernate.SQL: debug # logger에 출력하려면
+    org.hibernate.type.descriptor.sql: trace # 파라미터 값 출력
+    org.mybatis: DEBUG
+    org.apache.ibatis: DEBUG
+    java.sql: DEBUG
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
